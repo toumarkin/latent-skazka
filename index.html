@@ -1,0 +1,601 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>אגדה לטנטית: מה המודל זוכר על אגדות עם רוסיות</title>
+
+<style>
+@font-face{font-family:"Karantina";font-weight:400;font-display:swap;src:url(fonts/karantina-hebrew-400-normal.woff2) format("woff2");unicode-range:U+0590-05FF,U+200C-2010,U+20AA,U+25CC,U+FB1D-FB4F}
+@font-face{font-family:"Karantina";font-weight:400;font-display:swap;src:url(fonts/karantina-latin-400-normal.woff2) format("woff2");unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+2000-206F,U+2074,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}
+@font-face{font-family:"Karantina";font-weight:700;font-display:swap;src:url(fonts/karantina-hebrew-700-normal.woff2) format("woff2");unicode-range:U+0590-05FF,U+200C-2010,U+20AA,U+25CC,U+FB1D-FB4F}
+@font-face{font-family:"Karantina";font-weight:700;font-display:swap;src:url(fonts/karantina-latin-700-normal.woff2) format("woff2");unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+2000-206F,U+2074,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}
+@font-face{font-family:"IBM Plex Sans Hebrew";font-weight:400;font-display:swap;src:url(fonts/ibm-plex-sans-hebrew-hebrew-400-normal.woff2) format("woff2");unicode-range:U+0590-05FF,U+200C-2010,U+20AA,U+25CC,U+FB1D-FB4F}
+@font-face{font-family:"IBM Plex Sans Hebrew";font-weight:400;font-display:swap;src:url(fonts/ibm-plex-sans-hebrew-latin-400-normal.woff2) format("woff2");unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+2000-206F,U+2074,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}
+@font-face{font-family:"IBM Plex Sans Hebrew";font-weight:400;font-display:swap;src:url(fonts/ibm-plex-sans-hebrew-cyrillic-ext-400-normal.woff2) format("woff2");unicode-range:U+0400-04FF,U+0460-052F,U+1C80-1C88,U+20B4,U+2DE0-2DFF,U+A640-A69F,U+FE2E-FE2F}
+@font-face{font-family:"IBM Plex Sans Hebrew";font-weight:500;font-display:swap;src:url(fonts/ibm-plex-sans-hebrew-hebrew-500-normal.woff2) format("woff2");unicode-range:U+0590-05FF,U+200C-2010,U+20AA,U+25CC,U+FB1D-FB4F}
+@font-face{font-family:"IBM Plex Sans Hebrew";font-weight:500;font-display:swap;src:url(fonts/ibm-plex-sans-hebrew-latin-500-normal.woff2) format("woff2");unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+2000-206F,U+2074,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}
+@font-face{font-family:"IBM Plex Sans Hebrew";font-weight:500;font-display:swap;src:url(fonts/ibm-plex-sans-hebrew-cyrillic-ext-500-normal.woff2) format("woff2");unicode-range:U+0400-04FF,U+0460-052F,U+1C80-1C88,U+20B4,U+2DE0-2DFF,U+A640-A69F,U+FE2E-FE2F}
+@font-face{font-family:"IBM Plex Sans Hebrew";font-weight:600;font-display:swap;src:url(fonts/ibm-plex-sans-hebrew-hebrew-600-normal.woff2) format("woff2");unicode-range:U+0590-05FF,U+200C-2010,U+20AA,U+25CC,U+FB1D-FB4F}
+@font-face{font-family:"IBM Plex Sans Hebrew";font-weight:600;font-display:swap;src:url(fonts/ibm-plex-sans-hebrew-latin-600-normal.woff2) format("woff2");unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+2000-206F,U+2074,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}
+@font-face{font-family:"IBM Plex Sans Hebrew";font-weight:600;font-display:swap;src:url(fonts/ibm-plex-sans-hebrew-cyrillic-ext-600-normal.woff2) format("woff2");unicode-range:U+0400-04FF,U+0460-052F,U+1C80-1C88,U+20B4,U+2DE0-2DFF,U+A640-A69F,U+FE2E-FE2F}
+:root{
+  --indigo:#12142a; --indigo-2:#1a1d38; --bone:#f4eedf; --fog:#cfcbe0;
+  --gold:#d4ad55; --red:#e04a37; --line:rgba(212,173,85,.25);
+  --display:"Karantina","Arial Narrow",sans-serif;
+  --body:"IBM Plex Sans Hebrew",system-ui,sans-serif;
+  --gap:32px;
+}
+*{box-sizing:border-box}
+html{background:var(--indigo)}
+body{margin:0;background:var(--indigo);color:var(--bone);font-family:var(--body);font-weight:400;font-size:18px;line-height:1.75;-webkit-font-smoothing:antialiased}
+img{max-width:100%;display:block}
+a{color:var(--gold)}
+:focus-visible{outline:2px solid var(--gold);outline-offset:3px}
+h1,h2,h3{font-family:var(--display);font-weight:700;margin:0}
+.hero h1{font-weight:900}
+p{margin:0 0 1em}
+.wrap{max-width:1200px;margin:0 auto;padding:0 40px}
+.measure{max-width:66ch}
+.en{direction:ltr;unicode-bidi:isolate}
+.ru{font-family:var(--body);font-style:italic;direction:ltr;unicode-bidi:isolate}
+.muted{color:var(--fog)}
+.lede{font-weight:400;font-family:var(--body);font-size:clamp(19px,1.6vw,22px);line-height:1.65}
+section.block{padding:128px 0}
+section.block > .wrap > h2{font-size:clamp(60px,7vw,104px);line-height:1;margin-bottom:22px}
+
+/* ---------- annotations (shared) ---------- */
+.ann{position:relative;display:block;line-height:0}
+.ann img,.ann canvas{width:100%;height:auto}
+.ann .boxes{position:absolute;inset:0;pointer-events:none}
+.box{position:absolute;border:1.5px solid var(--red);border-radius:2px;box-shadow:0 0 0 1px rgba(0,0,0,.35)}
+.box.v{border-color:var(--gold)}
+.box span{position:absolute;bottom:100%;right:-1.5px;margin-bottom:3px;font:600 12.5px/1.45 var(--body);
+  padding:1px 7px;background:var(--red);color:#fff;border-radius:2px;direction:rtl;white-space:normal;width:max-content;max-width:max(100%,150px)}
+.box.v span{background:var(--gold);color:#1a1405}
+.box.low span{bottom:auto;top:100%;margin:3px 0 0}
+.box.in span{bottom:auto;top:0;margin:0;right:0}
+.box.l span{right:auto;left:-1.5px}
+.box.in.l span{left:0}
+.boxes .box{opacity:0;transform:scale(.96);transition:opacity .35s ease, transform .35s ease}
+.boxes.show .box{opacity:1;transform:none}
+.boxes.show .box:nth-child(2){transition-delay:.12s}
+.boxes.show .box:nth-child(3){transition-delay:.24s}
+.boxes.show .box:nth-child(4){transition-delay:.36s}
+.legend{display:flex;gap:26px;flex-wrap:wrap;font-size:15px;color:var(--fog);margin-top:18px}
+.legend i{display:inline-block;width:14px;height:10px;border:1.5px solid var(--red);margin-left:8px;vertical-align:middle}
+.legend i.v{border-color:var(--gold)}
+
+/* ---------- hero: the window ---------- */
+.hero{position:relative;z-index:1;height:340vh;background:var(--indigo)}
+#original{position:relative;z-index:2;margin-top:-100vh;opacity:0;will-change:opacity}
+.hero-stage{position:sticky;top:0;height:100vh;overflow:hidden;background:#fbd675}
+.win{position:absolute;left:var(--winx,40%);top:50%;width:168vh;aspect-ratio:1672/941;transform:translate(-50%,-50%);transform-origin:49.8% 55.9%;perspective:1600px;will-change:transform}
+.win > img{position:absolute;inset:0;width:100%;height:100%;-webkit-mask-image:linear-gradient(to right,transparent,#000 9%,#000 91%,transparent),linear-gradient(to bottom,transparent,#000 2.5%,#000 97.5%,transparent);-webkit-mask-composite:source-in;mask-image:linear-gradient(to right,transparent,#000 9%,#000 91%,transparent),linear-gradient(to bottom,transparent,#000 2.5%,#000 97.5%,transparent);mask-composite:intersect}
+.shutter{position:absolute;transform-style:preserve-3d;will-change:transform;filter:drop-shadow(0 6px 10px rgba(60,30,0,.25))}
+.shutter img{width:100%;height:100%;transform:scaleX(-1);display:block}
+.shutter.l{left:37.48%;top:34.0%;width:12.42%;height:44.6%;transform-origin:4% 50%}
+.shutter.r{left:48.09%;top:34.86%;width:13.6%;height:42.8%;transform-origin:100% 50%;z-index:2}
+.hero-title{position:absolute;z-index:3;top:50%;right:4vw;transform:translateY(-50%);width:min(27vw,400px);color:#3b1a0c}
+.hero-title h1{font-size:clamp(76px,9.5vw,170px);line-height:.84;margin-bottom:.18em;color:#2a1208}
+.hero-title .sub{font-family:var(--body);font-weight:500;font-size:clamp(17px,1.35vw,21px);line-height:1.5;margin:0}
+.hero-title .by{margin-top:1.6em;font-size:14.5px;line-height:1.6;color:#5a3418}
+.hero-veil{position:absolute;inset:0;z-index:4;pointer-events:none;opacity:0}
+.hero-veil.ink{background:var(--indigo)}
+.hero-veil canvas{width:100%;height:100%;display:block;image-rendering:pixelated}
+.cue{position:absolute;bottom:26px;right:4vw;z-index:5;font-size:14px;color:#5a3418;display:flex;flex-direction:column;gap:8px;align-items:flex-start;transition:opacity .4s}
+.cue i{display:block;width:1px;height:40px;background:linear-gradient(#7a3a12,transparent);animation:drip 2.4s ease-in-out infinite}
+@keyframes drip{0%{transform:scaleY(0);transform-origin:top}50%{transform:scaleY(1);transform-origin:top}51%{transform-origin:bottom}100%{transform:scaleY(0);transform-origin:bottom}}
+
+/* ---------- original work ---------- */
+.salaf{display:grid;grid-template-columns:1fr 1fr;gap:72px;align-items:start}
+.salaf-imgs{display:grid;grid-template-columns:1fr 1fr;grid-template-rows:auto auto;gap:12px;margin-top:34px}
+.salaf-imgs figure{margin:0}
+.salaf-imgs figure:first-child{grid-row:span 2}
+.salaf-imgs img{width:100%;height:100%;object-fit:cover;filter:grayscale(1);cursor:zoom-in}
+.salaf-imgs figcaption{font-size:13px;color:var(--fog);margin-top:6px;line-height:1.4}
+.qa h3{font-size:36px;line-height:1.05;color:var(--gold);margin:0 0 .25em}
+.qa p{margin-bottom:1.6em}
+blockquote{margin:8px 0 0;padding:26px 0 0;border-top:1px solid var(--line)}
+blockquote .en{display:block;font-family:var(--body);font-weight:500;font-size:clamp(20px,1.8vw,24px);line-height:1.45}
+blockquote .he{display:block;margin-top:.5em}
+blockquote cite{display:block;font-style:normal;font-size:14px;color:var(--fog);margin-top:.4em}
+
+/* ---------- method ---------- */
+.method{display:grid;grid-template-columns:repeat(3,1fr);margin:48px 0 0;padding:0;list-style:none;border-top:1px solid var(--line)}
+.method li{padding:28px 0 0 32px}
+.method li + li{border-right:1px solid var(--line);padding-right:32px}
+.method b{display:block;font-family:var(--display);font-weight:700;font-size:40px;line-height:1.15;margin-bottom:.35em}
+.method b small{display:block;font-family:var(--body);font-size:14px;color:var(--gold);font-weight:600;margin-bottom:6px}
+.method .ex{margin-top:1em;font-size:14px;color:var(--fog);line-height:1.55}
+.tools{margin-top:44px;font-size:15px;color:var(--fog)}
+
+/* ---------- morph scenes ---------- */
+.scenes-head{padding:128px 0 24px}
+.scenes-head h2{font-size:clamp(60px,7vw,104px);line-height:1;margin-bottom:22px}
+.scene{position:relative;height:400vh}
+.stage{position:sticky;top:0;height:100vh;display:grid;grid-template-columns:360px 1fr;gap:56px;align-items:center;max-width:1280px;margin:0 auto;padding:0 40px}
+.viewport{position:relative;height:80vh}
+.viewport canvas{position:absolute;inset:0;width:100%;height:100%}
+.viewport .boxes{position:absolute}
+.cap h3{font-size:clamp(58px,5.6vw,90px);line-height:.92;margin-bottom:26px}
+.states{list-style:none;margin:0 0 26px;padding:0;display:grid;gap:4px}
+.states li{display:flex;gap:12px;align-items:center;color:var(--fog);font-size:15px;transition:color .3s}
+.states li::before{content:"";flex:0 0 9px;height:9px;border:1px solid currentColor;border-radius:50%;transition:background .3s}
+.states li.on{color:var(--bone)}
+.states li.on::before{background:var(--gold);border-color:var(--gold)}
+.readout{border-top:1px solid var(--line);padding-top:18px;min-height:12em}
+.readout .kind{font-family:var(--display);font-size:32px;color:var(--gold);margin-bottom:.25em}
+.readout .prompt{direction:ltr;text-align:left;font-size:13.5px;color:var(--fog);line-height:1.5;margin-bottom:.8em}
+.readout .note{font-size:16.5px;line-height:1.6}
+.ctrl{display:flex;align-items:center;gap:14px;margin-top:24px}
+.ctrl button{background:none;border:1px solid var(--gold);color:var(--gold);font:inherit;font-size:15px;padding:5px 20px;cursor:pointer;border-radius:999px}
+.ctrl button:hover{background:var(--gold);color:var(--indigo)}
+.ctrl input{flex:1;accent-color:var(--gold);direction:rtl}
+
+.thesis{padding:150px 0}
+.thesis p{font-weight:700;font-family:var(--display);font-size:clamp(46px,6vw,92px);line-height:1;margin:0;max-width:17em}
+.thesis p + p{margin-top:.55em;color:var(--gold)}
+
+/* ---------- annotated gallery ---------- */
+.gallery{display:grid;grid-template-columns:1fr 1fr;gap:72px 48px;margin-top:56px;align-items:start}
+.shot{margin:0;padding-top:24px}
+.shot .ann img{cursor:zoom-in}
+.shot figcaption{margin-top:14px}
+.shot .who{font-family:var(--display);font-weight:700;font-size:32px;line-height:1.15}
+.shot .how{font-size:13.5px;color:var(--gold);margin:2px 0 6px}
+.shot p{font-size:15.5px;color:var(--fog);line-height:1.6;margin:0}
+
+/* ---------- archive ---------- */
+.archive{display:grid;grid-template-columns:repeat(5,1fr);gap:18px;margin-top:56px}
+.card{all:unset;cursor:pointer;display:block}
+.card .im{position:relative;aspect-ratio:3/4;overflow:hidden;background:var(--indigo-2)}
+.card .im img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:opacity .5s ease,filter .5s ease}
+.card .im img.gen{opacity:0;filter:blur(6px)}
+.card:hover .im img.gen,.card:focus-visible .im img.gen{opacity:1;filter:none}
+.card .t{font-family:var(--display);font-weight:700;font-size:28px;margin-top:10px;line-height:1.15}
+.card .s{font-size:13px;color:var(--fog)}
+.card .flag{position:absolute;top:8px;right:8px;font-size:12px;padding:0 8px;background:rgba(18,20,42,.85)}
+.card .flag.no{color:#ffb4a8}
+
+dialog{border:0;padding:0;background:var(--indigo);color:var(--bone);width:min(1120px,94vw);max-height:92vh}
+dialog::backdrop{background:rgba(6,7,16,.86)}
+.dlg{padding:40px 44px;overflow:auto;max-height:92vh}
+.dlg header{display:flex;justify-content:space-between;gap:20px;align-items:start}
+.dlg h3{font-size:60px;line-height:1}
+.x{background:none;border:1px solid var(--line);color:var(--bone);font:inherit;font-size:15px;padding:4px 16px;cursor:pointer}
+.dlg .quote{margin:18px 0 4px;font-family:var(--body);font-weight:500;font-size:20px;line-height:1.5}
+.dlg .prompt{direction:ltr;text-align:left;font-size:14px;color:var(--fog);margin:16px 0 26px;line-height:1.5}
+.dlg .row{display:flex;gap:14px;overflow-x:auto;padding:22px 0 8px}
+.dlg .row figure{margin:0;flex:0 0 auto;width:300px}
+.dlg .row figcaption{font-size:13px;color:var(--fog);margin-top:6px}
+.dlg dl{display:grid;grid-template-columns:auto 1fr;gap:6px 18px;margin:22px 0 0;font-size:16px}
+.dlg dt{color:var(--gold)} .dlg dd{margin:0}
+
+#lb{position:fixed;inset:0;background:rgba(6,7,16,.95);display:none;align-items:center;justify-content:center;z-index:60;cursor:zoom-out;padding:40px}
+#lb.on{display:flex}
+#lb .ann{display:inline-block;max-width:min(92vw,1200px)}
+#lb .ann img{max-height:86vh;width:auto;max-width:100%}
+
+.answer p{font-weight:400;font-family:var(--body);font-size:clamp(20px,1.8vw,24px);line-height:1.65}
+.notes{margin:0;padding:0 1.1em 0 0}
+.notes li{margin-bottom:.6em;color:var(--fog);font-size:16px}
+footer{padding:64px 0 96px;border-top:1px solid var(--line);font-size:15px;color:var(--fog)}
+footer ul{padding:0 1.1em 0 0;margin:.6em 0 0}
+
+@media (max-width:960px){
+  .wrap{padding:0 22px}
+  .salaf,.method{grid-template-columns:1fr;gap:40px}
+  .method li,.method li + li{border-right:none;padding:24px 0;border-bottom:1px solid var(--line)}
+  .stage{grid-template-columns:1fr;grid-template-rows:auto 1fr;gap:12px;padding:16px 20px;align-content:start}
+  .cap h3{font-size:36px;margin-bottom:8px}
+  .states{grid-auto-flow:column;margin-bottom:8px}
+  .readout{min-height:0;padding-top:8px}
+  .readout .prompt{display:none}
+  .readout .note{font-size:15px}
+  .ctrl{margin-top:10px}
+  .viewport{height:52vh}
+  .archive{grid-template-columns:repeat(2,1fr)}
+  .gallery{grid-template-columns:1fr;gap:56px}
+  .win{--winx:50%;width:200vw;top:60%}
+  .cue{right:auto;left:50%;transform:translateX(-50%);align-items:center}
+  .hero-title{top:28px;right:22px;left:22px;width:auto;transform:none}
+  .hero-title h1{font-size:64px;margin-bottom:.1em}
+  .hero-title .by{display:none}
+  .box span{font-size:11px}
+}
+@media (prefers-reduced-motion:reduce){ .cue i{animation:none} }
+</style>
+</head>
+<body>
+
+<header class="hero" id="hero">
+  <div class="hero-stage">
+    <div class="win" id="win">
+      <img src="img/window.jpg" alt="חלון כפרי מעוטר, ובתוכו קולובוק על צלחת">
+      <div class="shutter l" id="shL"><img src="img/shutter-l.webp" alt=""></div>
+      <div class="shutter r" id="shR"><img src="img/shutter-r.webp" alt=""></div>
+    </div>
+    <div class="hero-title" id="heroTitle">
+      <h1>אגדה לטנטית</h1>
+      <p class="sub">מה מודל בינה מלאכותית זוכר על <span style="white-space:nowrap">אגדות עם רוסיות</span>, ומה הוא שוכח בדרך</p>
+      <p class="by"><span id="author">נטליה טומרקין</span><br>בינה מלאכותית ועיצוב, משימה 2: המרחב הלטנטי<br>בעקבות <span class="en">Salaf</span> של נוף אלג'ווייסיר</p>
+    </div>
+    <div class="hero-veil" id="veilNoise"><canvas id="veilCanvas" width="160" height="100"></canvas></div>
+    <div class="hero-veil ink" id="veilInk"></div>
+  </div>
+</header>
+
+<main>
+
+<section class="block" id="original">
+  <div class="wrap salaf">
+    <div>
+      <h2 style="font-size:clamp(60px,7vw,104px);line-height:1;margin-bottom:22px"><span class="en">Salaf</span></h2>
+      <p class="lede">נוף אלג'ווייסיר, 2020. אמנית ילידת סעודיה מפעילה מערכות ראייה ממוחשבת על צילומים היסטוריים של בדואים, מוחקת מהם את הדמויות, ומאמנת על התוצאה מודל גנרטיבי.</p>
+      <div class="salaf-imgs">
+        <figure><img src="img/salaf-1.jpg" alt="דיוקן בדואי שפניו נמחקו לצללית לבנה" data-zoom></figure>
+        <figure><img src="img/salaf-2.jpg" alt="מערכת זיהוי מתייגת גברים בדואים כ-Astronaut ו-Helmet" data-zoom><figcaption>הבדואים מתויגים כ"אסטרונאוט" וכ"קסדה"</figcaption></figure>
+        <figure><img src="img/salaf-3.jpg" alt="עשרות צילומים שבהם הדמויות הוחלפו בצלליות לבנות" data-zoom><figcaption>"הדאטהסט הנעדר"</figcaption></figure>
+      </div>
+      <p class="muted" style="font-size:14px;margin-top:14px">התמונות מתוך המאמר של אנטוניו סומאיני, <span class="en">October</span> 196 (2026).</p>
+    </div>
+    <div class="qa measure">
+      <h3>איזה ארכיון, ומה חסר בו</h3>
+      <p>צילומי בדואים מהארכיון של גרטרוד בל, הארכיאולוגית והקצינה הבריטית, ואוסף צילומים אוריינטליסטי של מוזיאון גטי. מערכות הזיהוי שהאמנית מפעילה עליהם אומנו על דאטה מערבי, חלקן לצרכים צבאיים. מה שחסר הוא התרבות עצמה: האנשים שבתמונות לא נכנסו לדאטה כפי שהם רואים את עצמם.</p>
+      <h3>מה המרחב הלטנטי חושף ומה הוא מעלים</h3>
+      <p>הוא חושף את ההטיה: חפץ בידי ילד מזוהה כ"סקייטבורד", לבוש בדואי כ"מדים צבאיים", גברים בכאפייה כ"אסטרונאוט". הוא מעלים את האנשים עצמם: גם אחרי שהאמנית מוחקת אותם, המודל הגנרטיבי ממשיך לשחזר את התנוחות האוריינטליסטיות שעליהן אומן.</p>
+      <h3>האסטרטגיה</h3>
+      <p>בעיקר סירוב. הדמויות הופכות לצלליות לבנות, "דאטהסט נעדר", כדי שלא יהפכו לחומר אימון. הטעויות של המכונה פועלות כגליץ' שמצדיק את הסירוב.</p>
+      <blockquote>
+        <span class="en">“entire identities are erased … through the statistical biases of training data”</span>
+        <span class="he">"זהויות שלמות נמחקות […] דרך ההטיות הסטטיסטיות של נתוני האימון"</span>
+        <cite>Somaini, "Latent Spaces: AI, Art, and the Archive", עמ' 46</cite>
+      </blockquote>
+    </div>
+  </div>
+</section>
+
+<section class="block" id="method" style="padding-top:0">
+  <div class="wrap">
+    <h2>הניסוי</h2>
+    <p class="lede measure">אלג'ווייסיר בודקת איך המכונה קוראת צילום תיעודי של תרבות שחסרה בדאטה. אני בודקת את אותה שאלה על בדיון: עשר דמויות מאגדות העם הרוסיות שאסף אלכסנדר אפאנסייב, ואיורים שלהן מאת בילבין, וסנצוב, לובוק עממי וקריק.</p>
+    <ol class="method">
+      <li><b><small>שלב 1</small>המכונה מתארת</b>העליתי כל איור לצ'אטבוט ושאלתי תמיד אותה שאלה: מה מוצג, מאיזה סיפור, איזו תרבות, איזו תקופה, וחמש תגיות.<div class="ex en">What is shown in this image? Which story or tradition is it from, which culture and which period? Give 5 tags.</div></li>
+      <li><b><small>שלב 2</small>המכונה מציירת מהטקסט</b>תרגמתי לאנגלית משפט מתוך האגדה עצמה, בלי שם הדמות, וביקשתי מהמודל לצייר אותו. כל פרומפט בצ'אט חדש, 2–3 פעמים.</li>
+      <li><b><small>שלב 3</small>המכונה מציירת מהשם</b>לארבע דמויות ביקשתי תמונה לפי השם בלבד, כדי לבדוק מה השם פותח שהטקסט לא פתח.<div class="ex en">Generate an image: Koschei the Deathless</div></li>
+    </ol>
+    <p class="tools">המהלכים מתוך המשימה: "לתת למכונה לתאר" ו"מה שחסר בדאטהסט", עם היפוך אסטרטגיה: במקום להסתיר, לחשוף. כלים: <span id="tools">ChatGPT (תיאור ויצירת תמונות)</span>, נובמבר 2026.</p>
+  </div>
+</section>
+
+<section id="finding">
+  <div class="wrap scenes-head">
+    <h2>אותה דמות, שלוש תמונות</h2>
+    <div class="legend"><span><i></i>החלפה: מה שהמודל שינה</span><span><i class="v"></i>נשמר: מה שתואם לאגדה</span></div>
+  </div>
+  <div id="scenes"></div>
+</section>
+
+<section class="thesis">
+  <div class="wrap">
+    <p>המרחב הלטנטי זוכר איורים, לא סיפורים.</p>
+    <p>התרבות הרוסית שמורה בו כסגנון שנפתח רק כשקוראים לו בשם. בלי השם, אותו סיפור נקרא כאגדה אירופית.</p>
+  </div>
+</section>
+
+<section class="block" id="gallery" style="padding-top:0">
+  <div class="wrap">
+    <h2>מה לא בסדר בתמונות</h2>
+    <p class="lede measure">כל תמונה שהמודל יצר, עם מסגרות במקומות שבהם הוא החליף את האגדה במשהו מוכר יותר, ובמקומות שבהם דווקא שמר עליה. ההחלפות נוטות תמיד לאותו כיוון: אל המערבי.</p>
+    <div class="legend"><span><i></i>החלפה</span><span><i class="v"></i>נשמר</span></div>
+    <div class="gallery" id="galleryGrid"></div>
+  </div>
+</section>
+
+<section class="block" id="archive" style="padding-top:0">
+  <div class="wrap">
+    <h2>הארכיון</h2>
+    <p class="lede measure">עשר הדמויות. העבירו את העכבר על איור כדי לראות את גרסת המכונה, ולחצו כדי לפתוח את כל החומר: המשפט מהאגדה, הפרומפט, התמונות ותשובת הצ'אטבוט.</p>
+    <div class="archive" id="archiveGrid"></div>
+  </div>
+</section>
+
+<section class="block answer" id="answer" style="padding-top:0">
+  <div class="wrap">
+    <h2>תשובה לעבודה המקורית</h2>
+    <div class="measure">
+      <p>אלג'ווייסיר מראה מכונה שקוראת לא נכון צילום תיעודי של תרבות שחסרה בדאטה, ועונה בסירוב: היא מוחקת את הדמויות. אני הופכת את האסטרטגיה וחושפת: מעמידה זה מול זה את האיור, את הטקסט ואת השם, ומסמנת על התמונות עצמן מה הוחלף. מתברר שהמודל לא "לא מכיר" את האגדה הרוסית. הוא שומר אותה כתווית סגנונית שנפתחת רק לפי שם, ובלעדיה הסיפור עצמו נקרא כאגדה אירופית.</p>
+    </div>
+    <h3 style="font-size:40px;margin:72px 0 16px">הערות על השיטה</h3>
+    <ul class="notes measure">
+      <li>בשאלה הראשונה על הציור של וסנצוב הצ'אטבוט חיפש באינטרנט ומצא את הציור לפי מקורות חיצוניים, כך שה"זיהוי" לא תמיד מגיע מהמרחב הלטנטי. מאז ביקשתי ממנו לענות רק לפי מה שהוא רואה.</li>
+      <li>את הקולובוק העליתי כחיתוך קטן מתוך ספר משנת 1919, בלי כותרת, והצ'אטבוט לא זיהה אותו. תשעת האיורים האחרים זוהו.</li>
+      <li>התגובות של המודל תלויות גם בזיכרון החשבון, ולכן את רוב התמונות יצרתי בצ'אטים חדשים.</li>
+      <li>מה שהמודל זוכר הוא לא האגדה העממית אלא הדימוי שבילבין ווסנצוב נתנו לה בסוף המאה ה-19 ובתחילת המאה ה-20.</li>
+    </ul>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    מקורות
+    <ul>
+      <li>Antonio Somaini, "Latent Spaces: AI, Art, and the Archive", <span class="en">October</span> 196 (2026), pp. 18–60. <a href="https://doi.org/10.1162/OCTO.a.545">doi.org/10.1162/OCTO.a.545</a></li>
+      <li>א. נ. אפאנסייב, <span class="ru">Народные русские сказки</span>, 1855–1863, <a href="https://ru.wikisource.org/wiki/Народные_русские_сказки_(Афанасьев)">בוויקיטקסט</a></li>
+      <li>איורים של איוון בילבין, ויקטור וסנצוב, לובוק עממי וואלרי קריק, בנחלת הכלל, <a href="https://commons.wikimedia.org/wiki/Category:Ivan_Bilibin">Wikimedia Commons</a></li>
+    </ul>
+  </div>
+</footer>
+
+<dialog id="dlg"><div class="dlg" id="dlgBody"></div></dialog>
+<div id="lb" role="dialog" aria-label="תמונה מוגדלת"></div>
+
+<script>
+/* ======================= ANNOTATIONS =======================
+   box: [x, y, w, h] in % of the image, from its top-left corner.
+   k: "x" = substitution (red), "v" = kept (gold). pos: "low" puts the label under the box, "in" inside it. */
+const ANN = {
+  "t03-1":[{b:[41,21,23,15],t:"מחוך שרוך",k:"x"},{b:[12,37,52,31],t:"חצאית שכבות וסינר",k:"x",pos:"in"},{b:[49,72,16,15],t:"מגפי עור",k:"x",pos:"low"},{b:[14,12,27,10],t:"צמה",k:"v"}],
+  "t03-2":[{b:[5,4,44,30],t:"גלימה אדומה עם ברדס, כמו כיפה אדומה",k:"x",pos:"in"},{b:[14,36,36,42],t:"שמלה וסינר מרכז-אירופיים",k:"x",pos:"in"},{b:[31,79,12,16],t:"מגפיים",k:"x",pos:"in"},{b:[52,17,10,13],t:"גולגולת",k:"v"}],
+  "t03-3":[{b:[32,18,18,20],t:"מחוך ושרוולים נפוחים",k:"x"},{b:[12,40,36,26],t:"חצאית וסינר",k:"x",pos:"in"},{b:[13,68,26,22],t:"מגפיים",k:"x",pos:"low"},{b:[17,11,15,18],t:"צמה",k:"v",pos:"low"}],
+  "t04-1":[{b:[39,4,44,74],t:"אסיר אנונימי: אין סימן לקושצ'יי",k:"x",pos:"in"},{b:[24,19,15,9],t:"12 שרשראות",k:"v"}],
+  "t04-3":[{b:[2,0,96,5],t:"מסגרת של כתב-יד מאויר מערבי",k:"x",pos:"low"},{b:[38,6,42,72],t:"אסיר אנונימי",k:"x",pos:"in"}],
+  "n04-1":[{b:[33,5,25,8],t:"כתר",k:"v",pos:"low"},{b:[42,32,26,38],t:"גלימה רוסית מעוטרת",k:"v",pos:"in"},{b:[77,4,22,40],t:"ליבנים",k:"v",pos:"in"},{b:[54,72,42,22],t:"ביצה בתיבה: המוות של קושצ'יי",k:"v",pos:"in"}],
+  "t06-1":[{b:[33,1,47,34],t:"ראשי אדם עם קרניים",k:"x",pos:"in"},{b:[4,26,30,34],t:"גלימה קרועה של פרש אופל",k:"x",pos:"low"},{b:[24,11,16,11],t:"עורב",k:"v"},{b:[22,44,52,48],t:"רוכב על סוס",k:"v",pos:"in"}],
+  "n06-1":[{b:[18,2,52,34],t:"שלושה ראשים (בטקסט: שישה)",k:"x",pos:"in"},{b:[62,22,36,30],t:"כנפיים ובלי סוס",k:"x",pos:"low"}],
+  "t07-1":[{b:[30,9,10,8],t:"כתר אירופי",k:"x"},{b:[64,5,34,38],t:"טירה אירופית (בטקסט: ממלכת צאר)",k:"x",pos:"low"},{b:[3,18,34,28],t:"גלימת נסיך מערבי",k:"x",pos:"low"},{b:[22,32,40,46],t:"זאב אפור",k:"v",pos:"in"}],
+  "n07-1":[{b:[53,3,10,10],t:"כובע פרווה",k:"v",pos:"low"},{b:[16,12,52,32],t:"קפטן רקום",k:"v",pos:"in"},{b:[82,1,17,54],t:"ליבנים",k:"v",pos:"in"}],
+  "t10-1":[{b:[84,40,9,11],t:"כיכר לחם בלי פנים",k:"x"},{b:[0,3,10,44],t:"וילון רקום",k:"v",pos:"in"}],
+  "n10-1":[{b:[44,33,31,25],t:"פנים",k:"v",pos:"low"},{b:[0,0,15,42],t:"ליבנים",k:"v",pos:"in"}],
+  "t08-1":[{b:[15,2,66,30],t:"רוח קרח שקופה (בטקסט: מורוזקו, סבא כפור)",k:"x",pos:"in"},{b:[10,70,28,28],t:"נערה תחת האשוח",k:"v"}],
+  "t05-1":[{b:[10,14,82,64],t:"ציפור דמוית עוף החול",k:"x",pos:"in"},{b:[80,20,18,28],t:"כיפות בצל, מהמילה tsar",k:"v",pos:"low"}],
+  "t01-1":[{b:[3,64,44,34],t:"מכתש",k:"v",pos:"in"},{b:[62,6,35,40],t:"בקתה על רגלי תרנגולת",k:"v",pos:"low"},{b:[8,13,33,20],t:"מטפחת ורקמה",k:"v"}],
+  "t09-2":[{b:[8,2,82,82],t:"סוס שדי שחור מפנטזיה מערבית",k:"x",pos:"in"},{b:[66,12,24,11],t:"ניצוצות מהעיניים",k:"v",pos:"low"}]
+};
+function boxesHTML(id){
+  return (ANN[id]||[]).map(a=>`<div class="box ${a.k==='v'?'v':''} ${a.pos||''} ${a.b[0]+a.b[2]<50?'l':''}" style="left:${a.b[0]}%;top:${a.b[1]}%;width:${a.b[2]}%;height:${a.b[3]}%"><span>${a.k==='v'?'✓':'✕'} ${a.t}</span></div>`).join('');
+}
+const SRC = id => `img/${id}.jpg`;
+function annImg(id, alt){ return `<span class="ann"><img src="${SRC(id)}" alt="${alt}" loading="lazy" data-zoom="${id}"><span class="boxes show">${boxesHTML(id)}</span></span>`; }
+
+/* ======================= DATA ======================= */
+const SCENES = [
+  {name:"וסיליסה היפה", frames:["o03","t03-1","t03-2"], labels:["האיור","לפי טקסט האגדה","שוב לפי הטקסט"],
+   notes:[
+     {kind:"האיור", prompt:"", note:"איוון בילבין, 1899. חולצה לבנה ארוכה עם רקמה אדומה, חצאית פסים, מחרוזות וצמה אחת ארוכה."},
+     {kind:"לפי טקסט האגדה", prompt:"A beautiful young village girl runs home through a dark forest at night, lighting her way with a glowing skull.", note:"הטקסט לא אומר מה היא לובשת, והמודל הלביש אותה כאיכרה מרכז-אירופית: מחוך, סינר, מגפי עור. רק הצמה נשארה."},
+     {kind:"שוב לפי הטקסט", prompt:"Same prompt, new chat.", note:"באותו פרומפט בדיוק היא מקבלת גלימה אדומה עם ברדס: וסיליסה הפכה לכיפה אדומה."}]},
+  {name:"קושצ'יי בן‑האלמוות", frames:["o04-bilibin","t04-1","n04-1"], labels:["האיור","לפי טקסט האגדה","לפי השם"],
+   notes:[
+     {kind:"האיור", prompt:"", note:"איוון בילבין, 1901. קושצ'יי דוהר ביער, מאגדת \"מריה מורבנה\"."},
+     {kind:"לפי טקסט האגדה", prompt:"In a locked closet, a deathless old man hangs chained with twelve chains.", note:"המודל צייר בדיוק את המשפט, כולל שתים-עשרה השרשראות, אבל זה אסיר אנונימי. שום דבר לא רוסי."},
+     {kind:"לפי השם", prompt:"Koschei the Deathless", note:"עם השם מופיעים כתר, גלימה מעוטרת, ליבנים, ותיבה עם ביצה: המודל יודע שמותו של קושצ'יי חבוי בביצה."}]},
+  {name:"זמיי גוריניץ'", frames:["o06","t06-1","n06-1"], labels:["האיור","לפי טקסט האגדה","לפי השם"],
+   notes:[
+     {kind:"האיור", prompt:"", note:"איוון בילבין, 1912. דרקון בעל שלושה ראשים."},
+     {kind:"לפי טקסט האגדה", prompt:"By a river, a six-headed monster rides out on a horse; the horse stumbles, and a black raven stirs on the monster's shoulder.", note:"באגדה המפלצת רוכבת על סוס. המודל צייר את הסוס ואת העורב, אבל כמו פרש אופל מפנטזיה מערבית."},
+     {kind:"לפי השם", prompt:"Zmey Gorynych", note:"דרקון מכונף בעל שלושה ראשים, כמו אצל בילבין. השם מחזיר את האיור, לא את הסיפור."}]},
+  {name:"איוון צארביץ'", frames:["o07","t07-1","n07-1"], labels:["האיור","לפי טקסט האגדה","לפי השם"],
+   notes:[
+     {kind:"האיור", prompt:"", note:"ויקטור וסנצוב, 1889. איוון צארביץ' על הזאב האפור."},
+     {kind:"לפי טקסט האגדה", prompt:"A young prince rides on the back of a huge grey wolf to the kingdom of a distant tsar.", note:"\"ממלכת הצאר\" הפכה לטירה אירופית, והנסיך קיבל כתר וגלימה של אגדה מערבית."},
+     {kind:"לפי השם", prompt:"Ivan Tsarevich riding the Grey Wolf", note:"קפטן רקום, כובע פרווה ויער ליבנה. התחפושת הרוסית עולה רק עם השם."}]},
+  {name:"קולובוק", frames:["o10","t10-1","n10-1"], labels:["האיור","לפי טקסט האגדה","לפי השם"],
+   notes:[
+     {kind:"האיור", prompt:"", note:"ואלרי קריק, 1919 (חיתוך). הצ'אטבוט לא זיהה אותו."},
+     {kind:"לפי טקסט האגדה", prompt:"A round loaf of bread lies on a windowsill, then suddenly rolls away…", note:"כיכר לחם רגילה מתגלגלת מבקתה כפרית. הדמות הפכה לחפץ."},
+     {kind:"לפי השם", prompt:"Kolobok", note:"לחמנייה עם פנים מחייכות ולחיים סמוקות, ביער ליבנה."}]}
+];
+
+const GALLERY = [
+  {id:"t03-1", who:"וסיליסה היפה", how:"לפי טקסט האגדה", d:"הטקסט לא אומר מה היא לובשת. המודל בחר לבוש איכרי מרכז-אירופי, כמו באיורים לאחים גרים."},
+  {id:"t03-2", who:"וסיליסה היפה", how:"לפי טקסט האגדה", d:"אותו פרומפט, צ'אט חדש: גלימה אדומה עם ברדס. וסיליסה הפכה לכיפה אדומה."},
+  {id:"t03-3", who:"וסיליסה היפה", how:"לפי טקסט האגדה", d:"גם בגרסה השלישית: מחוך, סינר ומגפיים. הצמה היא הפרט הרוסי היחיד."},
+  {id:"t04-1", who:"קושצ'יי בן‑האלמוות", how:"לפי טקסט האגדה", d:"המשפט צויר במדויק, אבל הדמות אנונימית. בלי השם אין קושצ'יי."},
+  {id:"t04-3", who:"קושצ'יי בן‑האלמוות", how:"לפי טקסט האגדה", d:"כשהמודל בחר סגנון \"עתיק\", הוא לקח מסגרת של כתב-יד מאויר מערבי."},
+  {id:"n04-1", who:"קושצ'יי בן‑האלמוות", how:"לפי השם", d:"השם פותח את \"התיקייה הרוסית\": גלימה, ליבנים, והביצה שבה חבוי מותו."},
+  {id:"t06-1", who:"זמיי גוריניץ'", how:"לפי טקסט האגדה", d:"הסוס והעורב מהטקסט נשמרו, אבל המפלצת היא פרש אופל מפנטזיה מערבית."},
+  {id:"n06-1", who:"זמיי גוריניץ'", how:"לפי השם", d:"השם מחזיר את הדרקון של בילבין, לא את המפלצת הרוכבת מהאגדה."},
+  {id:"t07-1", who:"איוון צארביץ'", how:"לפי טקסט האגדה", d:"\"ממלכת צאר רחוק\" צוירה כטירה גותית, והנסיך קיבל כתר אירופי."},
+  {id:"n07-1", who:"איוון צארביץ'", how:"לפי השם", d:"עם השם: קפטן, כובע פרווה ויער ליבנה."},
+  {id:"t10-1", who:"קולובוק", how:"לפי טקסט האגדה", d:"הדמות הפכה לחפץ: כיכר לחם קטנה בלי פנים, בקצה השביל."},
+  {id:"n10-1", who:"קולובוק", how:"לפי השם", d:"הפנים מופיעות רק עם השם."},
+  {id:"t08-1", who:"מורוזקו", how:"לפי טקסט האגדה", d:"מורוזקו, סבא כפור של האגדה, הפך לרוח קרח שקופה. הזקן נעלם."},
+  {id:"t05-1", who:"ציפור האש", how:"לפי טקסט האגדה", d:"מילה אחת בפרומפט, tsar, הוסיפה לרקע ארמון עם כיפות בצל."},
+  {id:"t09-2", who:"סיבקה-בורקה", how:"לפי טקסט האגדה", d:"הסוס הקסום הפך לסוס שדי שחור, כמו בפנטזיה מערבית."},
+  {id:"t01-1", who:"באבא יאגה", how:"לפי טקסט האגדה", d:"היחידה שזוהתה מהטקסט בלבד: מכתש ומטאטא הם מפתח מוכר, והמודל צייר אותה בסגנון לובוק."}
+];
+
+const CHARS = [
+  {n:"באבא יאגה", he:"\"יצאה מן היער באבא יאגה: נוסעת במכתש, מאיצה בעלי, ומוחקת את עקבותיה במטאטא\"", ru:"«…выехала из лесу баба-яга — в ступе едет, пестом погоняет, помелом след заметает»", src:"«Василиса Прекрасная»",
+   o:["o01-bilibin","o01-lubok","o01-vasnetsov"], ol:["בילבין, 1900","לובוק, המאה ה-18","וסנצוב, 1917"],
+   p:"An old woman rides out of a dark forest in a wooden mortar, driving it with a pestle and sweeping away her tracks with a broom.",
+   g:["t01-1","t01-2"], ok:true, bot:"Baba Yaga, Russian folklore, lubok, 18th century", draw:"זיהה את באבא יאגה מהתיאור בלבד וצייר אותה בסגנון לובוק, עם בקתה על רגלי תרנגולת."},
+  {n:"הבקתה על רגלי תרנגולת", he:"\"עומדת בקתה על רגלי תרנגולת\"; \"על הגדר תקועות גולגולות אדם, עם עיניים\"", ru:"«…стоит избушка на курьих ножках» / «…на заборе торчат черепа людские, с глазами»", src:"«Баба-яга», «Василиса Прекрасная»",
+   o:["o02"], ol:["בילבין, 1899"],
+   p:"A small wooden hut standing on chicken legs in a forest. Around it is a fence made of human bones, with human skulls with eyes stuck on top of the fence.",
+   g:["t02-1"], ok:true, bot:"The Hut on Chicken Legs… Russian and East Slavic folklore", draw:"מדויק לטקסט, בלי החלפות."},
+  {n:"וסיליסה היפה", he:"\"בריצה יצאה וסיליסה הביתה לאור הגולגולת\"", ru:"«Бегом пустилась домой Василиса при свете черепа…»", src:"«Василиса Прекрасная»",
+   o:["o03"], ol:["בילבין, 1899"],
+   p:"A beautiful young village girl runs home through a dark forest at night, lighting her way with a glowing skull.",
+   g:["t03-1","t03-2","t03-3"], ok:true, bot:"Ivan Bilibin's illustration for Vasilisa the Beautiful", draw:"הגולגולת נשארה, אבל הלבוש הוא מחוך, סינר ומגפיים של איכרה מרכז-אירופית, ובגרסה אחת גלימה אדומה כמו של כיפה אדומה. רק הצמה נשארה רוסית."},
+  {n:"קושצ'יי בן‑האלמוות", he:"\"ושם תלוי קושצ'יי בן-האלמוות, כבול בשתים-עשרה שרשראות\"", ru:"«…а там висит Кощей Бессмертный, на двенадцати цепях прикован»", src:"«Марья Моревна»",
+   o:["o04-bilibin","o04-vasnetsov"], ol:["בילבין, 1901","וסנצוב, 1917–1926"],
+   p:"In a locked closet, a deathless old man hangs chained with twelve chains.",
+   g:["t04-1","t04-2","t04-3","n04-1","n04-2"], ok:true, bot:"Koschei the Deathless… Marya Morevna… Art Nouveau", draw:"מהטקסט: אסיר אנונימי, ובגרסה אחת כתב-יד מאויר מערבי. מהשם: מלך רוסי וביצה בתיבה."},
+  {n:"ציפור האש", he:"\"נוצותיה זהב, ועיניה כבדולח מזרחי\"", ru:"«…на ней перья золотые, а глаза восточному хрусталю подобны»", src:"«Сказка об Иване-царевиче, жар-птице и о сером волке»",
+   o:["o05"], ol:["בילבין, 1899"],
+   p:"A bird flies into the tsar's garden at night; its feathers are golden and its eyes are like oriental crystal.",
+   g:["t05-1","t05-2"], ok:true, bot:"Ivan Tsarevich and the Firebird… Russian folk fairy tale", draw:"ציפור זהב כמו עוף החול, ובגרסה אחת כיפות בצל ברקע בגלל המילה tsar."},
+  {n:"זמיי גוריניץ'", he:"\"יוצא הצ'ודו-יודו בן שישת הראשים; הסוס שתחתיו מעד, עורב שחור על כתפו התנער\"", ru:"«…выезжает чудо-юдо шестиглавое; под ним конь споткнулся, чёрный ворон на плече встрепенулся…»", src:"«Иван Быкович»",
+   o:["o06"], ol:["בילבין, 1912"],
+   p:"By a river, a six-headed monster rides out on a horse; the horse stumbles, and a black raven stirs on the monster's shoulder.",
+   g:["t06-1","t06-2","t06-3","n06-1"], ok:true, bot:"Zmey Gorynych, a three-headed, winged dragon… bylina", draw:"מהטקסט: מפלצת על סוס כמו פרש אופל. מהשם: דרקון מכונף בעל שלושה ראשים."},
+  {n:"איוון צארביץ'", he:"\"איוון צארביץ' עלה על הזאב האפור, ויצאו אל ממלכת הצאר דולמט\"", ru:"«Иван-царевич сел на серого волка, и поехали они в государство царя Долмата»", src:"«Сказка об Иване-царевиче, жар-птице и о сером волке»",
+   o:["o07"], ol:["וסנצוב, 1889"],
+   p:"A young prince rides on the back of a huge grey wolf to the kingdom of a distant tsar.",
+   g:["t07-1","t07-2","t07-3","n07-1"], ok:true, bot:"Ivan Tsarevich Riding the Grey Wolf (1889) by Viktor Vasnetsov", draw:"מהטקסט: נסיך וטירה אירופיים. מהשם: קפטן, כובע פרווה, יער ליבנה."},
+  {n:"מורוזקו", he:"\"מורוזקו מפצח על האשוח, קופץ מאשוח לאשוח ומקיש\"", ru:"«…Морозко на ёлке потрескивает, с ёлки на ёлку поскакивает да пощёлкивает»", src:"«Морозко»",
+   o:["o08"], ol:["בילבין, 1932"],
+   p:"In a winter forest a girl sits alone under a fir tree; Frost crackles in the tree above her, leaping from fir to fir and snapping.",
+   g:["t08-1","t08-2","t08-3"], ok:true, bot:"Morozko (Father Frost)… Russian folk fairy tale", draw:"מורוזקו הפך לרוח קרח צעירה בשמיים, לא לזקן."},
+  {n:"סיבקה-בורקה", he:"\"סיבקו רץ, האדמה רועדת, מעיניו ניצוצות ומנחיריו עשן כעמוד\"", ru:"«Сивко бежит, только земля дрожит, из очей искры сыплются, из ноздрей дым столбом»", src:"«Сивко-бурко»",
+   o:["o09"], ol:["וסנצוב, סקיצה, 1914–1926"],
+   p:"A magic horse gallops so that the earth trembles; sparks fly from its eyes and smoke rises in columns from its nostrils.",
+   g:["t09-1","t09-2"], ok:true, bot:"Sivka-Burka… Viktor Vasnetsov", draw:"סוס לבן עם עיני אש, ובגרסה השנייה סוס שחור ושדי כמו בפנטזיה מערבית."},
+  {n:"קולובוק", he:"\"שכב הקולובוק, שכב, ופתאום התגלגל: מהחלון לספסל, מהספסל לרצפה\"", ru:"«Колобок полежал-полежал, да вдруг и покатился — с окна на лавку, с лавки на пол…»", src:"«Колобок»",
+   o:["o10"], ol:["קריק, 1919 (חיתוך)"],
+   p:"A round loaf of bread lies on a windowsill, then suddenly rolls away: from the window to the bench, from the bench to the floor, out the door and further and further.",
+   g:["t10-1","t10-2","t10-3","n10-1"], ok:false, bot:"I can't reliably identify a story or tradition", draw:"מהטקסט: כיכר לחם בבקתה כפרית. מהשם: לחמנייה עם פנים."}
+];
+
+const REDUCED = matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+/* ======================= LATENT DISSOLVE ENGINE ======================= */
+const imgCache={};
+function loadImg(id){ if(!imgCache[id]) imgCache[id]=new Promise(r=>{const im=new Image();im.onload=()=>r(im);im.onerror=()=>r(null);im.src=SRC(id);}); return imgCache[id]; }
+const noise=document.createElement('canvas'); noise.width=160; noise.height=100;
+const nctx=noise.getContext('2d'), nData=nctx.createImageData(160,100);
+function refreshNoise(){ const d=nData.data; for(let i=0;i<d.length;i+=4){const v=Math.random()*255; d[i]=v*.62+18; d[i+1]=v*.55+20; d[i+2]=v*.7+42; d[i+3]=255;} nctx.putImageData(nData,0,0); }
+const tiny=document.createElement('canvas'), tctx=tiny.getContext('2d');
+function fitCanvas(c){ const r=c.getBoundingClientRect(), dpr=Math.min(devicePixelRatio||1,2); const w=Math.round(r.width*dpr), h=Math.round(r.height*dpr); if(c.width!==w||c.height!==h){c.width=w;c.height=h;} return dpr; }
+function rectFor(W,H,im,cover){ const s=cover?Math.max(W/im.width,H/im.height):Math.min(W/im.width,H/im.height); const dw=im.width*s, dh=im.height*s; return [(W-dw)/2,(H-dh)/2,dw,dh]; }
+function drawLatent(ctx,im,bs,nz,cover){
+  const W=ctx.canvas.width,H=ctx.canvas.height; ctx.clearRect(0,0,W,H); if(!im) return null;
+  const [dx,dy,dw,dh]=rectFor(W,H,im,cover);
+  if(bs>1.5){ const tw=Math.max(2,Math.round(dw/bs)), th=Math.max(2,Math.round(dh/bs)); tiny.width=tw; tiny.height=th; tctx.drawImage(im,0,0,tw,th); ctx.imageSmoothingEnabled=false; ctx.drawImage(tiny,0,0,tw,th,dx,dy,dw,dh); }
+  else { ctx.imageSmoothingEnabled=true; ctx.drawImage(im,dx,dy,dw,dh); }
+  if(nz>.01){ ctx.save(); ctx.globalAlpha=nz; ctx.imageSmoothingEnabled=false; ctx.beginPath(); ctx.rect(dx,dy,dw,dh); ctx.clip(); ctx.drawImage(noise,0,0,160,100,dx,dy,dw,dh); ctx.restore(); }
+  return [dx,dy,dw,dh];
+}
+function dissolve(ctx,A,B,t,cover){ const e=t<.5?t*2:(1-t)*2; return drawLatent(ctx,t<.5?A:B,1+Math.pow(e,1.5)*56,Math.min(.78,Math.pow(e,1.3)*.9),cover); }
+
+/* hero: shutters open on scroll, then we zoom through the window into the latent noise */
+(function(){
+  const hero=document.getElementById('hero'), win=document.getElementById('win'),
+        L=document.getElementById('shL'), R=document.getElementById('shR'),
+        title=document.getElementById('heroTitle'),
+        vN=document.getElementById('veilNoise'), vI=document.getElementById('veilInk'),
+        vc=document.getElementById('veilCanvas').getContext('2d');
+  const clamp=(x,a=0,b=1)=>Math.min(b,Math.max(a,x)), seg=(p,a,b)=>clamp((p-a)/(b-a));
+  const ease=t=>t<.5?4*t*t*t:1-Math.pow(-2*t+2,3)/2;
+  function frame(){
+    const r=hero.getBoundingClientRect(); const p=clamp(-r.top/(r.height-innerHeight));
+    if(r.bottom>0){
+      const o=ease(seg(p,.04,.46));                       // shutters
+      L.style.transform=`rotateY(${-178*o}deg)`;
+      R.style.transform=`rotateY(${178*o}deg)`;
+      title.style.opacity=1-seg(p,.30,.48);
+      const z=ease(seg(p,.46,.84));                       // zoom into the window
+      const base=parseFloat(getComputedStyle(win).getPropertyValue('--winx'))||40;
+      win.style.left=(base+(50-base)*z)+'%';
+      win.style.transform=`translate(-50%,-50%) scale(${1+z*7})`;
+      const n=seg(p,.60,.78); vN.style.opacity=n;         // latent noise
+      if(n>0){ refreshNoise(); vc.drawImage(noise,0,0); }
+      vI.style.opacity=seg(p,.78,.86);                    // into the dark page
+    }
+    const ot=orig.getBoundingClientRect().top;          // the project text appears in place
+    orig.style.opacity=clamp(1-ot/(innerHeight*.3));
+    requestAnimationFrame(frame);
+  }
+  const orig=document.getElementById('original');
+  requestAnimationFrame(frame);
+})();
+
+/* text scramble for labels */
+const GLYPHS="אבגדהוזחטיכלמנסעפצקרשתжзщыюяѣ";
+function scramble(el,text){ let f=0; const total=16; cancelAnimationFrame(el._raf);
+  (function tick(){ let o=""; for(let i=0;i<text.length;i++){ o+=(f/total>i/text.length||text[i]===" ")?text[i]:GLYPHS[(Math.random()*GLYPHS.length)|0]; } el.textContent=o; if(++f<=total) el._raf=requestAnimationFrame(tick); })(); }
+
+/* ======================= SCENES ======================= */
+document.getElementById('scenes').innerHTML=SCENES.map((s,i)=>`
+<div class="scene" data-i="${i}">
+  <div class="stage">
+    <div class="cap">
+      <h3>${s.name}</h3>
+      <ol class="states">${s.labels.map(l=>`<li>${l}</li>`).join('')}</ol>
+      <div class="readout" aria-live="polite"><div class="kind"></div><div class="prompt"></div><div class="note"></div></div>
+    </div>
+    <div class="viewport"><canvas role="img" aria-label="${s.name}: האיור המקורי וגרסאות המכונה"></canvas><div class="boxes"></div></div>
+  </div>
+</div>`).join('');
+
+const T=[.18,.36,.56,.74];
+const scenes=[...document.querySelectorAll('.scene')].map(el=>{
+  const s=SCENES[+el.dataset.i]; const c=el.querySelector('canvas');
+  const o={el,s,c,ctx:c.getContext('2d'),imgs:[],state:-1,clean:-1,lis:el.querySelectorAll('.states li'),
+    kind:el.querySelector('.kind'),prompt:el.querySelector('.prompt'),note:el.querySelector('.note'),boxes:el.querySelector('.boxes'),
+    visible:false};
+  Promise.all(s.frames.map(loadImg)).then(a=>o.imgs=a);
+  return o;
+});
+const io=new IntersectionObserver(es=>es.forEach(e=>{scenes.find(x=>x.el===e.target).visible=e.isIntersecting;}),{rootMargin:"100px"});
+scenes.forEach(o=>io.observe(o.el));
+function progress(el){ const r=el.getBoundingClientRect(); return Math.min(1,Math.max(0,-r.top/(r.height-innerHeight))); }
+
+function render(o){
+  if(!o.imgs.length) return;
+  const dpr=fitCanvas(o.c);
+  const p=progress(o.el);
+  const [A,B,C]=o.imgs; let st, clean=-1, rect;
+  if(p<T[0]){ rect=drawLatent(o.ctx,A,1,.04,false); st=0; clean=0; }
+  else if(p<T[1]){ const t=(p-T[0])/(T[1]-T[0]); rect=dissolve(o.ctx,A,B,t,false); st=t<.5?0:1; }
+  else if(p<T[2]){ rect=drawLatent(o.ctx,B,1,.04,false); st=1; clean=1; }
+  else if(p<T[3]){ const t=(p-T[2])/(T[3]-T[2]); rect=dissolve(o.ctx,B,C,t,false); st=t<.5?1:2; }
+  else { rect=drawLatent(o.ctx,C,1,.04,false); st=2; clean=2; }
+  if(rect){ const b=o.boxes.style; b.left=rect[0]/dpr+'px'; b.top=rect[1]/dpr+'px'; b.width=rect[2]/dpr+'px'; b.height=rect[3]/dpr+'px'; }
+  if(clean!==o.clean){
+    o.clean=clean;
+    if(clean>0){ o.boxes.innerHTML=boxesHTML(o.s.frames[clean]); o.boxes.classList.remove('show'); void o.boxes.offsetWidth; o.boxes.classList.add('show'); }
+    else { o.boxes.classList.remove('show'); setTimeout(()=>{ if(o.clean<=0) o.boxes.innerHTML=''; },350); }
+  }
+  if(st!==o.state){ o.state=st; o.lis.forEach((li,k)=>li.classList.toggle('on',k===st)); const n=o.s.notes[st]; scramble(o.kind,n.kind); o.prompt.textContent=n.prompt; o.note.textContent=n.note; }
+}
+(function loop(){ refreshNoise(); scenes.forEach(o=>{ if(o.visible) render(o); }); requestAnimationFrame(loop); })();
+
+/* ======================= GALLERY ======================= */
+document.getElementById('galleryGrid').innerHTML=GALLERY.map(g=>`
+  <figure class="shot">${annImg(g.id,`${g.who}, ${g.how}`)}
+    <figcaption><div class="who">${g.who}</div><div class="how">${g.how}</div><p>${g.d}</p></figcaption>
+  </figure>`).join('');
+
+/* ======================= ARCHIVE ======================= */
+const grid=document.getElementById('archiveGrid');
+grid.innerHTML=CHARS.map((c,i)=>`
+  <button class="card" data-i="${i}" aria-label="פתיחת ${c.n}">
+    <div class="im"><img src="${SRC(c.o[0])}" alt="${c.n}, ${c.ol[0]}" loading="lazy"><img class="gen" src="${SRC(c.g[0])}" alt="" loading="lazy">
+      <span class="flag ${c.ok?'':'no'}">${c.ok?'זוהה':'לא זוהה'}</span></div>
+    <div class="t">${c.n}</div><div class="s">${c.ol[0]}</div>
+  </button>`).join('');
+const dlg=document.getElementById('dlg'), body=document.getElementById('dlgBody');
+grid.addEventListener('click',e=>{
+  const b=e.target.closest('.card'); if(!b) return; const c=CHARS[+b.dataset.i];
+  body.innerHTML=`
+    <header><h3>${c.n}</h3><button class="x" id="close">סגירה</button></header>
+    <p class="quote">${c.he}</p>
+    <div class="ru muted" style="font-size:15px">${c.ru} ${c.src}</div>
+    <div class="prompt">${c.p}</div>
+    <div class="row">
+      ${c.o.map((id,k)=>`<figure><img src="${SRC(id)}" alt="${c.n}, ${c.ol[k]}" data-zoom="${id}"><figcaption>${c.ol[k]}</figcaption></figure>`).join('')}
+      ${c.g.map(id=>`<figure>${annImg(id,`${c.n}, גרסת המכונה`)}<figcaption>${id.startsWith('n')?'המכונה, לפי השם':'המכונה, לפי הטקסט'}</figcaption></figure>`).join('')}
+    </div>
+    <dl><dt>הצ'אטבוט</dt><dd><span class="en">"${c.bot}"</span> ${c.ok?'(זיהה)':'(לא זיהה)'}</dd><dt>המודל צייר</dt><dd>${c.draw}</dd></dl>`;
+  dlg.showModal(); document.getElementById('close').onclick=()=>dlg.close();
+});
+dlg.addEventListener('click',e=>{ if(e.target===dlg) dlg.close(); });
+
+/* ======================= LIGHTBOX (keeps annotations) ======================= */
+const lb=document.getElementById('lb');
+document.addEventListener('click',e=>{
+  const im=e.target.closest('img[data-zoom]');
+  if(im){ const id=im.dataset.zoom; lb.innerHTML = ANN[id] ? annImg(id,im.alt) : `<span class="ann"><img src="${im.src}" alt="${im.alt}"></span>`;
+    lb.querySelectorAll('img').forEach(x=>x.removeAttribute('data-zoom')); if(dlg.open) dlg.close(); lb.classList.add('on'); }
+  else if(lb.contains(e.target)) lb.classList.remove('on');
+});
+addEventListener('keydown',e=>{ if(e.key==='Escape') lb.classList.remove('on'); });
+</script>
+</body>
+</html>
