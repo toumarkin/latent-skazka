@@ -70,7 +70,7 @@ section.block > .wrap > h2{font-size:clamp(60px,7vw,104px);line-height:1;margin-
 .hero{position:relative;z-index:1;height:340vh;background:var(--indigo)}
 #original{position:relative;z-index:2;margin-top:-100vh;opacity:0;will-change:opacity}
 .hero-stage{position:sticky;top:0;height:100vh;overflow:hidden;background:#fbd675}
-.win{position:absolute;left:var(--winx,40%);top:50%;width:168vh;aspect-ratio:1672/941;transform:translate(-50%,-50%);transform-origin:49.8% 55.9%;perspective:1600px;will-change:transform}
+.win{position:absolute;left:var(--winx,40%);top:50%;width:168vh;aspect-ratio:1672/941;transform:translate(-50%,-50%);transform-origin:49.8% 55.9%;perspective:1600px}
 .win > img{position:absolute;inset:0;width:100%;height:100%;-webkit-mask-image:linear-gradient(to right,transparent,#000 9%,#000 91%,transparent),linear-gradient(to bottom,transparent,#000 2.5%,#000 97.5%,transparent);-webkit-mask-composite:source-in;mask-image:linear-gradient(to right,transparent,#000 9%,#000 91%,transparent),linear-gradient(to bottom,transparent,#000 2.5%,#000 97.5%,transparent);mask-composite:intersect}
 .shutter{position:absolute;transform-style:preserve-3d;will-change:transform;filter:drop-shadow(0 6px 10px rgba(60,30,0,.25))}
 .shutter img{width:100%;height:100%;transform:scaleX(-1);display:block}
@@ -482,8 +482,13 @@ function dissolve(ctx,A,B,t,cover){ const e=t<.5?t*2:(1-t)*2; return drawLatent(
         vc=document.getElementById('veilCanvas').getContext('2d');
   const clamp=(x,a=0,b=1)=>Math.min(b,Math.max(a,x)), seg=(p,a,b)=>clamp((p-a)/(b-a));
   const ease=t=>t<.5?4*t*t*t:1-Math.pow(-2*t+2,3)/2;
+  let hidden=false;
   function frame(){
     const r=hero.getBoundingClientRect(); const p=clamp(-r.top/(r.height-innerHeight));
+    // once the ink fully covers the stage (or it is off screen), drop the huge zoomed layer;
+    // when scrolling back up it is re-rasterized from scratch instead of showing stale tiles
+    const hide=r.bottom<=0||p>=.87;
+    if(hide!==hidden){ hidden=hide; win.style.visibility=title.style.visibility=hide?'hidden':''; }
     if(r.bottom>0){
       const o=ease(seg(p,.04,.46));                       // shutters
       L.style.transform=`rotateY(${-178*o}deg)`;
@@ -492,7 +497,7 @@ function dissolve(ctx,A,B,t,cover){ const e=t<.5?t*2:(1-t)*2; return drawLatent(
       const z=ease(seg(p,.46,.84));                       // zoom into the window
       const base=parseFloat(getComputedStyle(win).getPropertyValue('--winx'))||40;
       win.style.left=(base+(50-base)*z)+'%';
-      win.style.transform=`translate(-50%,-50%) scale(${1+z*7})`;
+      win.style.transform=z>0?`translate(-50%,-50%) scale(${1+z*7})`:'translate(-50%,-50%)';
       const n=seg(p,.60,.78); vN.style.opacity=n;         // latent noise
       if(n>0){ refreshNoise(); vc.drawImage(noise,0,0); }
       vI.style.opacity=seg(p,.78,.86);                    // into the dark page
