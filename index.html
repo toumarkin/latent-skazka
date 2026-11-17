@@ -110,6 +110,15 @@ blockquote cite{display:block;font-style:normal;font-size:14px;color:var(--fog);
 .method .ex{margin-top:1em;font-size:14px;color:var(--fog);line-height:1.55}
 .tools{margin-top:44px;font-size:15px;color:var(--fog)}
 
+/* ---------- source illustrations ---------- */
+.refs{display:flex;flex-wrap:wrap;gap:28px 14px;margin-top:48px}
+.refs::after{content:"";flex-grow:600}
+.refs figure{margin:0;flex-grow:calc(var(--r) * 100);flex-basis:calc(var(--r) * 190px);min-width:0}
+.refs img{width:100%;height:auto;aspect-ratio:var(--r);object-fit:cover;cursor:zoom-in;background:var(--indigo-2)}
+.refs figcaption{margin-top:8px;line-height:1.35}
+.refs .who{display:block;font-family:var(--display);font-weight:700;font-size:24px}
+.refs .by{display:block;font-size:13px;color:var(--fog)}
+
 /* ---------- morph scenes ---------- */
 .scenes-head{padding:128px 0 24px}
 .scenes-head h2{font-size:clamp(60px,7vw,104px);line-height:1;margin-bottom:22px}
@@ -197,6 +206,9 @@ footer ul{padding:0 1.1em 0 0;margin:.6em 0 0}
   .viewport{height:52vh}
   .archive{grid-template-columns:repeat(2,1fr)}
   .gallery{grid-template-columns:1fr;gap:56px}
+  .refs{gap:20px 10px}
+  .refs figure{flex-basis:calc(var(--r) * 110px)}
+  .refs .who{font-size:19px}
   .win{--winx:50%;width:200vw;top:60%}
   .cue{right:auto;left:50%;transform:translateX(-50%);align-items:center}
   .hero-title{top:28px;right:22px;left:22px;width:auto;transform:none}
@@ -266,6 +278,14 @@ footer ul{padding:0 1.1em 0 0;margin:.6em 0 0}
       <li><b><small>שלב 3</small>המכונה מציירת מהשם</b>לארבע דמויות ביקשתי תמונה לפי השם בלבד, כדי לבדוק מה השם פותח שהטקסט לא פתח.<div class="ex en">Generate an image: Koschei the Deathless</div></li>
     </ol>
     <p class="tools">המהלכים מתוך המשימה: "לתת למכונה לתאר" ו"מה שחסר בדאטהסט", עם היפוך אסטרטגיה: במקום להסתיר, לחשוף. כלים: <span id="tools">ChatGPT (תיאור ויצירת תמונות)</span>, נובמבר 2026.</p>
+  </div>
+</section>
+
+<section class="block" id="sources" style="padding-top:0;padding-bottom:0">
+  <div class="wrap">
+    <h2>האיורים שבחרתי</h2>
+    <p class="lede measure">אלה האיורים שהעליתי לצ'אטבוט בשלב הראשון, לפי דמות. לכל דמות כתבתי גם משפט מהאגדה, ולפיו המודל צייר את התמונות שבהמשך.</p>
+    <div class="refs" id="refsGrid"></div>
   </div>
 </section>
 
@@ -560,6 +580,12 @@ function render(o){
   if(st!==o.state){ o.state=st; o.lis.forEach((li,k)=>li.classList.toggle('on',k===st)); const n=o.s.notes[st]; scramble(o.kind,n.kind); o.prompt.textContent=n.prompt; o.note.textContent=n.note; }
 }
 (function loop(){ refreshNoise(); scenes.forEach(o=>{ if(o.visible) render(o); }); requestAnimationFrame(loop); })();
+
+/* ======================= SOURCE ILLUSTRATIONS ======================= */
+const RATIO={"o01-bilibin":859/1100,"o01-lubok":760/628,"o01-vasnetsov":530/392,"o02":300/473,"o03":869/1100,"o04-bilibin":1100/763,"o04-vasnetsov":1100/738,"o05":443/600,"o06":360/552,"o07":815/1100,"o08":456/600,"o09":699/1100,"o10":172/194};
+document.getElementById('refsGrid').innerHTML=CHARS.flatMap(c=>c.o.map((id,k)=>`
+  <figure style="--r:${RATIO[id].toFixed(3)}"><img src="${SRC(id)}" alt="${c.n}, ${c.ol[k]}" loading="lazy" data-zoom="${id}">
+    <figcaption><span class="who">${c.n}</span><span class="by">${c.ol[k]}</span></figcaption></figure>`)).join('');
 
 /* ======================= GALLERY ======================= */
 document.getElementById('galleryGrid').innerHTML=GALLERY.map(g=>`
